@@ -1,0 +1,21 @@
+<div class="col-md-6" style="margin: 0 auto;">
+  <h1 style="text-align:center">Usuarios</h1>
+
+  <table class="table table-striped rounded" >
+    <thead class="table-dark">
+      <tr>
+        <th>Email</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+</div>
