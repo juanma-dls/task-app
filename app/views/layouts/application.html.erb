@@ -11,35 +11,49 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <%= image_tag("logo.png") %>
-        <% if user_signed_in? %>
-          <a class="navbar-brand" href="/">Home</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarScroll">
-            <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Navegación
-                </a>
-                <ul class="dropdown-menu">
-                  <li> <%= link_to "Usuarios", users_path, class:"dropdown-item" %></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <nav class="navbar navbar-dark" aria-label="Dark offcanvas navbar">
+      <div class="container-fluid d-flex">
+        <div class="d-flex align-items-center">
+          <% if user_signed_in? %>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Navegación</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                  <li class="nav-item">
+                    <%= link_to "Home", root_path, class:"dropdown-item mb-2" %>
+                  </li>
+                  <li class="nav-item">
+                    <%= link_to "Usuarios", users_path, class:"dropdown-item" %>
+                  </li>
                 </ul>
+              </div>
+            </div>
+          <% end %>
+          <%= image_tag("logo.png", class:"ms-2") %>
+        </div>
+        <% if user_signed_in? %>
+          <div class="nav-item dropdown me-2">
+            <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Editar Perfil", edit_user_registration_path, class:"dropdown-item" %></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li>
+                <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class:"dropdown-item" do %>
+                  <i class="fa-solid fa-door-open"></i>
+                  <span>Cerrar sesión</span>
+                <% end %>
               </li>
             </ul>
-            <div class="d-flex">
-              <%= link_to "Editar Perfil", edit_user_registration_path, class:"btn btn-link" %>
-              <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class:"btn btn-link" do %>
-                <i class="fa-solid fa-door-open"></i>
-                <span>Cerrar sesión</span>
-              <% end %>
-            </div>
           </div>
         <% end %>
       </div>
@@ -48,7 +62,7 @@
       <div class="mt-4">
         <div class="d-flex align-items-center justify-content-center">
           <% if notice.present? %>
-            <p class="alert alert-primary custom-alert"><%= notice %></p>
+            <p class="alert alert-success custom-alert"><%= notice %></p>
           <% elsif alert.present? %>
             <p class="alert alert-danger custom-alert"><%= alert %></p>
           <% end %>
