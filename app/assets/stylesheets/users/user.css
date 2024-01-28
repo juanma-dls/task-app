@@ -1,0 +1,21 @@
+.card-header {
+  background-color: #f7f7f7;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+img.rounded-circle {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+dl {
+  margin-top: 0;
+}
+
+dt {
+  font-weight: bold;
+}

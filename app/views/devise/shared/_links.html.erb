@@ -1,24 +1,20 @@
 <%- if controller_name != 'sessions' %>
   <%= link_to "Inicia sesión", new_session_path(resource_name), class:"text-dark" %><% end %>
 
-<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <% if controller_name != 'sessions' %> | <% end %>
-  <%= link_to "Regístrate", new_registration_path(resource_name), class:"text-dark" %><% end %>
-
 <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-  <% if controller_name != 'sessions' || controller_name != 'registrations' %> | <% end %>
+  <% if controller_name != 'sessions' %> | <% end %>
   <%= link_to "¿Olvidaste tu contraseña?", new_password_path(resource_name), class:"text-dark" %><% end %>
 
 <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-  <% if controller_name != 'sessions' || controller_name != 'registrations' || controller_name != 'passwords' %> | <% end %>
+  <% if controller_name != 'sessions' || controller_name != 'passwords' %> | <% end %>
   <%= link_to "¿No recibiste instrucciones de confirmación?", new_confirmation_path(resource_name), class:"text-dark" %><% end %>
 
 <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
-  <% if controller_name != 'sessions' || controller_name != 'registrations' || controller_name != 'passwords' || controller_name != 'confirmations' %> | <% end %>
+  <% if controller_name != 'sessions' || controller_name != 'passwords' || controller_name != 'confirmations' %> | <% end %>
   <%= link_to "¿No recibiste instrucciones de desbloqueo?", new_unlock_path(resource_name), class:"text-dark" %><% end %>
 
 <%- if devise_mapping.omniauthable? %>
-  <% if controller_name != 'sessions' || controller_name != 'registrations' || controller_name != 'passwords' || controller_name != 'confirmations' || controller_name != 'unlocks' %> | <% end %>
+  <% if controller_name != 'sessions' || controller_name != 'passwords' || controller_name != 'confirmations' || controller_name != 'unlocks' %> | <% end %>
   <%- resource_class.omniauth_providers.each_with_index do |provider, index| %>
     <%= button_to "Inicia sesión con #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class:"text-dark" %><% end %>
   <% end %>

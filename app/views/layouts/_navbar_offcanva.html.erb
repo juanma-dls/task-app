@@ -1,0 +1,66 @@
+<nav class="navbar navbar-dark" aria-label="Dark offcanvas navbar">
+  <div class="container-fluid d-flex">
+    <div class="d-flex align-items-center">
+      <% if user_signed_in? %>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarDark" aria-controls="offcanvasNavbarDark">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasNavbarDark" aria-labelledby="offcanvasNavbarDarkLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarDarkLabel">Navegación</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item dropdown-item d-flex align-items-center">
+                <%= link_to root_path, class: "dropdown-item mb-2 d-flex align-items-center" do %>
+                  <span class="material-symbols-outlined me-2">
+                    home
+                  </span>
+                  <span class="align-self-center">Home</span>
+                <% end %>
+              </li>
+              <li class="nav-item dropdown-item d-flex align-items-center">
+                <%= link_to users_path, class: "dropdown-item mb-2 d-flex align-items-center" do %>
+                  <span class="material-symbols-outlined me-2">
+                    group
+                  </span>
+                  <span class="align-self-center">Users</span>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      <% end %>
+      <%= image_tag(image_path("logo.png"), class:"ms-2") %>
+    </div>
+    <% if user_signed_in? %>
+      <div class="nav-item dropdown me-2">
+        <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= current_user.nombre %>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="d-flex align-items-center">
+            <%= link_to edit_user_profile_path, class:"dropdown-item d-flex align-items-center" do %>
+              <span class="material-symbols-outlined me-2">
+                account_box
+              </span>
+              <span class="align-self-center">Editar Perfil</span>
+            <% end %>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li class="d-flex align-items-center">
+            <%= link_to destroy_user_session_path, data: {turbo_method: :delete}, class:"dropdown-item d-flex align-items-center" do %>
+              <span class="material-symbols-outlined me-2">
+                home
+              </span>
+              <span class="align-self-center">Cerrar sesión</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</nav>

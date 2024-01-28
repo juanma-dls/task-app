@@ -7,3 +7,15 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+roles = Rol.create!([
+  {name: "Administrador"},
+  {name: "Gestor de Proyecto"},
+  {name: "Colaborador"},
+  {name: "Observador"}
+])
+
+User.create!([
+  { nombre: "Administrador", email: "juanmadls6@gmail.com", username: "administrador", password: "jmdls1997", rol_id: roles.first.id }
+])
+

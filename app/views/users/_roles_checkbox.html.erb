@@ -1,0 +1,6 @@
+<% Rol.all.each do |rol| %>
+  <div class="form-check">
+    <%= f.check_box :rol_id, { checked: @user.rol_id == rol.id, unchecked_value: nil }, rol.id, nil %>
+    <%= f.label :rol_id, rol.name, class: "form-check-label" %>
+  </div>
+<% end %>

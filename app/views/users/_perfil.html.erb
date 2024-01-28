@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="card shadow-sm p-4 mb-4">
+    <h2 class="card-header">Actualizar Perfil</h2>
+    <%= form_for(user, url: update_user_profile_path, method: :patch, data: { turbo: false }) do |f| %>
+      <div class="card-body">
+        <div class="mb-3 row">
+          <label for="user_email" class="col-sm-3 col-form-label">Email</label>
+          <div class="col-sm-9">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="user_password" class="col-sm-3 col-form-label">Password</label>
+          <div class="col-sm-9">
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+            <i>(dejar en blanco si no deseas cambiarlo)</i>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> caracteres mínimo</em>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="user_password_confirmation" class="col-sm-3 col-form-label">Confirm Password</label>
+          <div class="col-sm-9">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="user_current_password" class="col-sm-3 col-form-label">Current Password</label>
+          <div class="col-sm-9">
+            <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+            <i>(se necesita tu contraseña actual para confirmar los cambios)</i>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <%= f.submit "Actualizar perfil", class: "btn btn-primary", data: { turbo_frame: "user-profile" } %>
+      </div>
+    <% end %>
+  </div>
+</div>

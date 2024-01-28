@@ -114,9 +114,6 @@ GEM
       ruby2_keywords
     error_highlight (0.6.0)
     erubi (1.12.0)
-    ffi (1.16.3)
-    font-awesome-sass (6.5.1)
-      sassc (~> 2.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.1)
@@ -229,8 +226,6 @@ GEM
     rexml (3.2.6)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
-    sassc (2.4.0)
-      ffi (~> 1.9)
     selenium-webdriver (4.17.0)
       base64 (~> 0.2)
       rexml (~> 3.2, >= 3.2.5)
@@ -287,7 +282,6 @@ DEPENDENCIES
   devise
   dotenv-rails (~> 2.1, >= 2.1.1)
   error_highlight (>= 0.4.0)
-  font-awesome-sass (~> 6.5.1)
   importmap-rails
   jbuilder
   mysql2 (~> 0.5)
