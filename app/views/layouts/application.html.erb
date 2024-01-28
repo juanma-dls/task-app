@@ -46,11 +46,13 @@
     </nav>
     <div class="container">
       <div class="mt-4">
-        <% if notice.present? %>
-          <p class="alert alert-primary"><%= notice %></p>
-        <% elsif alert.present? %>
-          <p class="alert alert-danger"><%= alert %></p>
-        <% end %>
+        <div class="d-flex align-items-center justify-content-center">
+          <% if notice.present? %>
+            <p class="alert alert-primary custom-alert"><%= notice %></p>
+          <% elsif alert.present? %>
+            <p class="alert alert-danger custom-alert"><%= alert %></p>
+          <% end %>
+        </div>
       
         <%= yield %>
       </div>

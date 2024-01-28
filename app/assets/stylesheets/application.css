@@ -14,8 +14,10 @@
  *= require_self
  */
 
- @import "font-awesome";
-
 .navbar {
   background-color: #8C8C8C;
+}
+
+.custom-alert {
+  display: inline-block;
 }
