@@ -1,24 +1,41 @@
-# README
+# Task App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a project management application where users can interact with tasks.
 
-Things you may want to cover:
+## Technologies
 
-* Ruby version
+- Rails 7.1
+- Ruby 3.1.0
 
-* System dependencies
+## Dependencies
 
-* Configuration
+- **Devise**: Used for user authentication.
+- **CanCan**: Manages permissions and authorization control.
 
-* Database creation
+## Getting Started
 
-* Database initialization
+Follow these steps to set up and run the project:
 
-* How to run the test suite
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/juanma-dls/task-app.git
 
-* Services (job queues, cache servers, search engines, etc.)
+2. **Navigate by folder**
+    ``sh
+    cd task-app
 
-* Deployment instructions
+3. **Create an environment file:**
+- Use the provided .env.example file as a template.
+- Create a new file named .env:
+    ``sh
+    tocuh .env
 
-* ...
+4. **Navigate by folder**
+* Create database
+    ``sh
+    rails db:create
+
+5. **Navigate by folder**
+* Run migrations and seeds
+`rails db:migrate`
+`rails db:seed`
