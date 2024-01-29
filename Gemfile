@@ -34,8 +34,9 @@ gem 'dotenv-rails', '~> 2.1', '>= 2.1.1'
 
 gem 'devise'
 
-gem "font-awesome-sass", "~> 6.5.1"
+gem 'serviceworker-rails'
 
+gem 'cancancan'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"

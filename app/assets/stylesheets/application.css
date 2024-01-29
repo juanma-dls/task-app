@@ -14,8 +14,54 @@
  *= require_self
  */
 
- @import "font-awesome";
-
-.navbar {
-  background-color: #8C8C8C;
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }
+
+/* Tipografía */
+body {
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Espacio en blanco */
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1rem;
+}
+
+/* Colores */
+.navbar {
+  background-color: #343a40; /* Un color más oscuro y moderno */
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #007bff; /* Azul de Bootstrap */
+  border-color: #007bff;
+  color: #fff;
+}
+
+/* Elementos interactivos */
+.btn-primary:hover {
+  background-color: #0069d9; /* Color más oscuro en hover */
+}
+
+.custom-alert {
+  padding: 1rem;
+  border-radius: 5px;
+  color: #333;
+}
+
