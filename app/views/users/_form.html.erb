@@ -1,6 +1,14 @@
 <div class="container">
   <div class="card shadow-sm p-4 mb-4">
-    <h2 class="card-header">Crear Usuario</h2>
+    <% if user.present?%>
+      <div class="card-header">
+        <h2>Editar Usuario</h2>
+      </div>
+    <% else %>
+      <div class="card-header">
+        <h2>Crear Usuario</h2>
+      </div>
+    <% end %>
     <%= form_for(user) do |f| %>
       <div class="card-body">
         <div class="mb-3 row">
@@ -48,9 +56,15 @@
           </div>
         </div>
       </div>
-      <div class="card-footer text-center">
-        <%= f.submit "Crear Usuario", class: "btn btn-primary" %>
-      </div>
+      <% if user.present?%>
+        <div class="card-footer text-center">
+          <%= f.submit "Editar Usuario", class: "btn btn-primary" %>
+        </div>
+      <% else %>
+        <div class="card-footer text-center">
+          <%= f.submit "Crear Usuario", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </div>

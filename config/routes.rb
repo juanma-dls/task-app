@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :users
   as :user do
     get 'profile/edit', to: 'users#edit_profile', as: 'edit_user_profile'
-    patch 'profile', to: 'users#update_profile', as: 'update_user_profile'
+    patch 'profile/update', to: 'users#update_profile', as: 'update_user_profile'
   end
   
 end

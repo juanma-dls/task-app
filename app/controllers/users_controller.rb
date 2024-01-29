@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[ show edit update edit_profile update_profile]
+  load_and_authorize_resource
 
   def index
     @users = User.all
@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    # Asignar roles al usuario según el tipo
+    asignar_roles_segun_tipo(@user)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'El Usuario fue Creado Exitosamente' }
@@ -29,11 +31,15 @@ class UsersController < ApplicationController
   def edit
   end
 
+  
   def edit_profile
-    # Puedes personalizar esta lógica según tus necesidades
+    @user = current_user # Cargar el usuario actual, no es necesario autorizarlo aquí
+    authorize! :update_profile, @user
   end
 
   def update_profile
+    @user = current_user
+    authorize! :update_profile, @user
     if @user.update_with_password(profile_params)
       bypass_sign_in(@user)
       redirect_to root_path, notice: "Perfil actualizado exitosamente."
@@ -52,11 +58,6 @@ class UsersController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
-  def set_user
-    @user = params[:id] ? User.find(params[:id]) : current_user
-  end
 
   def user_params
     params.require(:user).permit(:nombre, :email, :password, :password_confirmation, :username, :rol_id)

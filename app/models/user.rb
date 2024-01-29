@@ -12,4 +12,20 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true
   validates :nombre, presence:true 
 
+  def administrador?
+    self.rol.name == "Administrador"
+  end
+
+  def gestor_proyecto?
+    self.rol.name == "Gestor de Proyecto"
+  end
+
+  def colaborador?
+    self.rol.name == "Colaborador"
+  end
+
+  def observador?
+    self.rol.name == "Observador"
+  end
+
 end
