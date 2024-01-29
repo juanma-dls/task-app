@@ -17,23 +17,23 @@ This is a project management application where users can interact with tasks.
 Follow these steps to set up and run the project:
 
 1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/juanma-dls/task-app.git
+
+git clone https://github.com/juanma-dls/task-app.git
 
 2. **Navigate by folder**
-    ``sh
-    cd task-app
+
+`cd task-app`
 
 3. **Create an environment file:**
 - Use the provided .env.example file as a template.
 - Create a new file named .env:
-    ``sh
-    tocuh .env
+
+`tocuh .env`
 
 4. **Navigate by folder**
 * Create database
-    ``sh
-    rails db:create
+
+`rails db:create`
 
 5. **Navigate by folder**
 * Run migrations and seeds
