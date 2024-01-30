@@ -12,8 +12,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    # Asignar roles al usuario según el tipo
-    asignar_roles_segun_tipo(@user)
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'El Usuario fue Creado Exitosamente' }
