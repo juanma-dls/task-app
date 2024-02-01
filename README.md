@@ -27,8 +27,8 @@ git clone https://github.com/juanma-dls/task-app.git
 
 3. **Create an environment file:**
 
-- Use the provided .env.example file as a template.
 - Create a new file named .env:
+- Use the provided .env.example file as a template.
 
 `tocuh .env`
 
@@ -44,5 +44,5 @@ git clone https://github.com/juanma-dls/task-app.git
 
 `make migrate-seed`
 
-## For more information about make commands, see the makefile.
+> For more information about make commands, see the **makefile**.
 
