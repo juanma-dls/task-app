@@ -14,6 +14,7 @@ This is a project management application where users can interact with tasks.
 - **CanCan**: Manages permissions and authorization control.
 
 ## Getting Started
+
 > For more information about make commands, see the **makefile**.
 
 Follow these steps to set up and run the project:
