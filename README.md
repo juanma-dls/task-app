@@ -6,6 +6,7 @@ This is a project management application where users can interact with tasks.
 
 - Rails 7.1
 - Ruby 3.1.0
+- Docker
 
 ## Dependencies
 
@@ -25,17 +26,23 @@ git clone https://github.com/juanma-dls/task-app.git
 `cd task-app`
 
 3. **Create an environment file:**
+
 - Use the provided .env.example file as a template.
 - Create a new file named .env:
 
 `tocuh .env`
 
-4. **Navigate by folder**
-* Create database
+4. **Build image of docker**
 
-`rails db:create`
+`make build`
 
-5. **Navigate by folder**
-* Run migrations and seeds
-`rails db:migrate`
-`rails db:seed`
+5. **Lift containers**
+
+`make up`
+
+6. **Run migrations and seeder**
+
+`make migrate-seed`
+
+## For more information about make commands, see the makefile.
+

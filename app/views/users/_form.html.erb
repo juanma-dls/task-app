@@ -1,15 +1,9 @@
 <div class="container">
   <div class="card shadow-sm p-4 mb-4">
-    <% if user.present?%>
-      <div class="card-header">
-        <h2>Editar Usuario</h2>
-      </div>
-    <% else %>
-      <div class="card-header">
-        <h2>Crear Usuario</h2>
-      </div>
-    <% end %>
-    <%= form_for(user) do |f| %>
+    <div class="card-header">
+      <h2><%= @user.new_record? ? 'Crear Usuario' : 'Editar Usuario' %></h2>
+    </div>
+    <%= form_for(@user) do |f| %>
       <div class="card-body">
         <div class="mb-3 row">
           <label for="user_nombre" class="col-sm-3 col-form-label">Nombre</label>
@@ -56,15 +50,9 @@
           </div>
         </div>
       </div>
-      <% if user.present?%>
-        <div class="card-footer text-center">
-          <%= f.submit "Editar Usuario", class: "btn btn-primary" %>
-        </div>
-      <% else %>
-        <div class="card-footer text-center">
-          <%= f.submit "Crear Usuario", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+      <div class="card-footer text-center">
+        <%= f.submit @user.new_record? ? 'Crear Usuario' : 'Editar Usuario', class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>
