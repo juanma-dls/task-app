@@ -30,6 +30,16 @@
                   <% end %>
                 </li>
               <% end %>
+              <% if can?(:read, :projects) %>
+                <li class="nav-item dropdown-item d-flex align-items-center">
+                  <%= link_to projects_path, class: "dropdown-item mb-2 d-flex align-items-center" do %>
+                    <span class="material-symbols-outlined">
+                      create_new_folder
+                    </span>
+                    <span class="align-self-center">Proyectos</span>
+                  <% end %>
+                </li>
+              <% end %>
             </ul>
           </div>
         </div>

@@ -21,6 +21,9 @@ build-no-cache: # Construye las imágenes de los contenedores sin utilizar el ca
 logs: # Muestra los registros de los contenedores
 	$(DOCKER_COMPOSE) logs
 
+logs-app: # Muestra los registros de los contenedores
+	$(DOCKER_COMPOSE) logs -f app
+
 migrate-seed: # Realiza las migraciones y ejecuta los seeders en la base de datos
 	$(DOCKER_COMPOSE) exec app rails db:migrate db:seed
 
@@ -32,5 +35,8 @@ seed: # Ejecuta los seeders en la base de datos
 
 test: # Ejecuta las pruebas
 	$(DOCKER_COMPOSE) exec app rails test
+
+bash:
+	$(DOCKER_COMPOSE) exec app bash
 
 .PHONY: up down build logs migrate test

@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   belongs_to :rol, class_name: "Rol", foreign_key: "rol_id"
+  has_many :projects
   
   validates :email, presence: true, uniqueness: true
   validates :password, presence: true, length: {minimum:6, maximum:15}

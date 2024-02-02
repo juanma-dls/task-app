@@ -8,5 +8,5 @@ class Task < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: :true, length: {maximum: 1000}
   validates :status, presence: :true
-  validates :priority
+  validates :priority, presence: :true
 end

@@ -6,5 +6,13 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true, length: {maximum: 1000}
-  validates :start_date, presence: true
+
+  enum status: {
+    iniciado: 'Iniciado',
+    en_desarrollo: 'En desarrollo',
+    finalizado: 'Finalizado',
+    pausado: 'Pausado',
+    cancelado: 'Cancelado',
+    pendiente_revision: 'Pendiente Revision'
+  }
 end

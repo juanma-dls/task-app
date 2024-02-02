@@ -1,0 +1,40 @@
+<div class="container-fluid py-4">
+  <h1 class="text-center mb-4 display-4">Proyectos</h1>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm rounded-lg">
+        <div class="card-header bg-light">
+          <%= link_to "Nuevo Proyecto", new_project_path, class: "btn btn-primary float-end" %>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover table-responsive-md">
+            <thead class="table-light">
+              <tr>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Fecha de inicio</th>
+                <th>Fecha de creacion</th>
+                <th ></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @projects.each do |project| %>
+                <tr>
+                  <td><%= project.name %></td>
+                  <td><%= project.status.humanize %></td>
+                  <td><%= project.start_date || "-" %></td>
+                  <td><%= project.created_at.strftime("%d/%m/%Y") %></td>  
+                  <td>
+                    <%= link_to 'Ver', project_path(project), class: "btn btn-sm btn-outline-secondary" %>
+                    <%= link_to 'Baja', project_path(project), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-sm btn-outline-danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
