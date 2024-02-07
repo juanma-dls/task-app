@@ -2,7 +2,6 @@
 
 
 $(document).on('click', '.btn-add-subrole', function(e) {
-  console.log("hola")
   e.preventDefault();
   var form = $(this).closest('form');
   var fields = form.find('.user-subrole:first').clone();
