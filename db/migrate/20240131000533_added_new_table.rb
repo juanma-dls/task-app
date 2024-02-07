@@ -21,38 +21,29 @@ class AddedNewTable < ActiveRecord::Migration[7.1]
       t.timestamps
     end
 
-    create_table :labels do |t|
-      t.string :name, null: false
-      t.string :color, null: false
-      t.timestamps
-    end
-
     create_table :subroles do |t|
       t.string :name, null: false
       t.text :description
       t.timestamps
     end
 
-    # Tabla comentarios
     create_table :comments do |t|
       t.text :content, null: false
       t.timestamps
     end
 
-    # Tabla intermedia para la relación muchos a muchos entre tareas y etiquetas
-    create_table :tasks_labels, id: false do |t|
-      t.belongs_to :task, foreign_key: true
-      t.belongs_to :label, foreign_key: true
+    # Tabla intermedia para asociar usuarios a subroles por tarea
+    create_table :user_subroles do |t|
+      t.belongs_to :user, foreign_key: true
+      t.belongs_to :subrol, foreign_key: { to_table: :subroles } # Referencia como subrol, pero apunta a la tabla subroles
+      t.timestamps
     end
 
     # Luego agregar las columnas para las relaciones
     add_reference :projects, :creator_user, foreign_key: { to_table: :users }
     add_reference :tasks, :project, foreign_key: { to_table: :projects }
-    add_reference :tasks, :assigned_user, foreign_key: { to_table: :users }
+    add_reference :tasks, :assigned_user, foreign_key: { to_table: :user_subroles }
     add_reference :comments, :user, foreign_key: { to_table: :users }
     add_reference :comments, :task, foreign_key: { to_table: :tasks }
-    add_reference :users, :subrole, foreign_key: true
-    add_reference :tasks, :subrole, foreign_key: true
-
   end
 end

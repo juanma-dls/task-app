@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
   self.table_name = "projects"
   
-  has_many :users
+  belongs_to :creator_user, class_name: "User", foreign_key: "creator_user_id"
   has_many :tasks
 
   validates :name, presence: true
