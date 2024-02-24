@@ -51,23 +51,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_000533) do
     t.text "description"
     t.date "end_date"
     t.string "status", null: false
-    t.integer "priority"
+    t.string "priority"
     t.decimal "estimated_time", precision: 10
     t.decimal "actual_time", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "project_id"
-    t.bigint "assigned_user_id"
-    t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   create_table "user_subroles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "subrol_id"
+    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subrol_id"], name: "index_user_subroles_on_subrol_id"
+    t.index ["task_id"], name: "index_user_subroles_on_task_id"
     t.index ["user_id"], name: "index_user_subroles_on_user_id"
   end
 
@@ -91,8 +91,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_000533) do
   add_foreign_key "comments", "users"
   add_foreign_key "projects", "users", column: "creator_user_id"
   add_foreign_key "tasks", "projects"
-  add_foreign_key "tasks", "user_subroles", column: "assigned_user_id"
   add_foreign_key "user_subroles", "subroles", column: "subrol_id"
+  add_foreign_key "user_subroles", "tasks"
   add_foreign_key "user_subroles", "users"
   add_foreign_key "users", "roles", column: "rol_id", on_update: :cascade, on_delete: :cascade
 end

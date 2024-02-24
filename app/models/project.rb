@@ -13,6 +13,6 @@ class Project < ApplicationRecord
     finalizado: 'Finalizado',
     pausado: 'Pausado',
     cancelado: 'Cancelado',
-    pendiente_revision: 'Pendiente Revision'
+    pendiente_revision: 'Pendiente de Revision'
   }
 end

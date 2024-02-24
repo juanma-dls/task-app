@@ -19,7 +19,7 @@
             <dd class="col-sm-9"><%= @project.creator_user.nombre %></dd>
 
             <dt class="col-sm-3">Estado:</dt>
-            <dd class="col-sm-9"><%= @project.status.humanize %></dd>
+            <dd class="col-sm-9"><%= Project.statuses[@project.status] %></dd>
 
             <dt class="col-sm-3">Fecha de inicio:</dt>
             <dd class="col-sm-9"><%= @project.start_date || "No iniciado" %></dd>
@@ -35,11 +35,14 @@
     </div>
   </div>
   <div class="mt-3 d-flex">
-    <%= link_to new_task_path, class: "btn btn-secondary d-flex align-items-center" do %>
+    <%= link_to new_task_path(project_id: @project.id), class: "btn btn-secondary d-flex align-items-center" do %>
       <span class="material-symbols-outlined">
         task
       </span>
       <span class="align-self-center">Agregar tarea</span>
     <% end %>
+  </div>
+  <div>
+    <%= render "project_tasks", project: @project %>
   </div>
 </div>

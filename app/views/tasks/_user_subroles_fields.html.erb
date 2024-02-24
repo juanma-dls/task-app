@@ -1,11 +1,11 @@
-<%= form.fields_for :user_roles, UserSubrole.new do |user_role_form| %>
+<%= form.fields_for :user_subroles, UserSubrole.new do |user_subrol_form| %>
   <div class="user-subrole">
     <div class="row mb-3">
       <div class="col">
-        <%= user_role_form.select :user_id, @users.map {|u| [u.nombre, u.id]}, {include_blank:'Select Usuarios'}, class: "form-select" %>
+        <%= user_subrol_form.select :user_id, User.all.map {|u| [u.nombre, u.id.to_i]}, {include_blank:'Select Usuarios'}, class: "form-select" %>
       </div>
       <div class="col">
-        <%= user_role_form.select :subrol_id, @subroles.map {|s| [s.nombre, s.id]}, {include_blank:'Select Subrol'}, class: "form-select" %>
+        <%= user_subrol_form.select :subrol_id, Subrol.all.map {|s| [s.name, s.id.to_i]}, {include_blank:'Select Subrol'}, class: "form-select" %>
       </div>
       <div class="col">
         <%= link_to "Eliminar", '#', class: "btn btn-danger btn-remove-subrole" %>

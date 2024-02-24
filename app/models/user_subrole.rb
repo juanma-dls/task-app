@@ -3,5 +3,6 @@ class UserSubrole < ApplicationRecord
   
   belongs_to :user
   belongs_to :subrol
+  belongs_to :task
 
 end

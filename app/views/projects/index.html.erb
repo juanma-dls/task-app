@@ -15,14 +15,14 @@
                 <th>Estado</th>
                 <th>Fecha de inicio</th>
                 <th>Fecha de creacion</th>
-                <th ></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               <% @projects.each do |project| %>
                 <tr>
                   <td><%= project.name %></td>
-                  <td><%= project.status.humanize %></td>
+                  <td><%= Project.statuses[project.status] %></td>
                   <td><%= project.start_date || "-" %></td>
                   <td><%= project.created_at.strftime("%d/%m/%Y") %></td>  
                   <td>

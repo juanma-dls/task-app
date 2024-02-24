@@ -1,6 +1,5 @@
 <div class="container-fluid py-4">
   <h1 class="text-center mb-4 display-4">Tareas</h1>
-
   <div class="row justify-content-center">
     <div class="col-lg-8">
       <div class="card border-0 shadow-sm rounded-lg">
@@ -13,6 +12,7 @@
               <tr>
                 <th>Nombre</th>
                 <th>Estado</th>
+                <th>Prioridad</th>
                 <th>Fecha de creacion</th>
                 <th ></th>
               </tr>
@@ -21,7 +21,8 @@
               <% @tasks.each do |task| %>
                 <tr>
                   <td><%= task.name %></td>
-                  <td><%= task.status.humanize %></td>
+                  <td><%= Task.statuses[task.status] %></td>
+                  <td><%= Task.priorities[task.priority] %></td>
                   <td><%= task.created_at.strftime("%d/%m/%Y") %></td>  
                   <td>
                     <%= link_to 'Ver', task_path(task), class: "btn btn-sm btn-outline-secondary" %>

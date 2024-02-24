@@ -38,7 +38,7 @@
        <div class="mb-3 row">
           <label for="project_status" class="col-sm-3 col-form-label">Estado</label>
           <div class="col-sm-9">
-            <%= f.select :status, Project.statuses.keys.map { |key| [Project.statuses[key], key] }, {}, class: "form-select" %>
+            <%= f.select :status, Project.statuses.map { |key, value| [value, key] }, {}, class: "form-select" %>
           </div>
         </div>
       </div>

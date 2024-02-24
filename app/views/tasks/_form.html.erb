@@ -17,23 +17,29 @@
           <div class="col-sm-9">
             <%= f.text_area :description, class: "form-control", required: true %>
           </div>
-          
+        </div>
+
+        <div class="mb-3 row">
+          <label for="task_status" class="col-sm-3 col-form-label">Estado</label>
+          <div class="col-sm-9">
+            <%= f.select :status, Task.statuses.map { |key, value| [value, key] }, {}, class: "form-select" %>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="task_priority" class="col-sm-3 col-form-label">Prioridad</label>
+          <div class="col-sm-9">
+            <%= f.select :priority, Task.priorities.map { |key, value| [value, key] }, {}, class: "form-select" %>
+          </div>
         </div>
 
         <div class="mb-3 row">
           <label for="task_end_date" class="col-sm-3 col-form-label">Usuarios</label>
           <div class="col-sm-9">
-            <%= render "user_roles_fields", form: f %>
+            <%= render "user_subroles_fields", form: f %>
           </div>
         </div>
-
-        <div class="mb-3 row">
-          <label for="task_end_date" class="col-sm-3 col-form-label">Fecha de Finalización</label>
-          <div class="col-sm-9">
-            <em>Fecha opcional</em>
-            <%= f.date_field :end_date, class: "form-control" %>
-          </div>
-        </div>
+      </div>
 
       </div>
       <div class="card-footer text-center">

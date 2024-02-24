@@ -10,6 +10,10 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def show
+    @tasks = @project.tasks
+  end
+
   def create
     @project = Project.new(project_params)
     respond_to do |format|
