@@ -2,7 +2,10 @@
   <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h2 class="mb-0">Tarea</h2>
-      <a href="<%= edit_task_path(@task) %>" class="btn btn-sm btn-primary">Editar Tarea</a>
+      <div class="d-flex justify-content-end">
+        <%= button_to "Editar", edit_task_path(@task), class:"btn btn-sm btn-primary me-2" %>
+        <%= @task.no_iniciada? ? button_to("Iniciar", iniciar_task_path(@task), class: "btn btn-sm btn-success") : "" %>
+      </div>
     </div>
 
     <div class="card-body">
@@ -10,19 +13,23 @@
         <div class="col-md-9">
           <dl class="row">
             <dt class="col-sm-3">Nombre:</dt>
-            <dd class="col-sm-9"><%= @task.name %></dd>
+            <dd class="col-sm-9"><%= @task.title %></dd>
 
             <dt class="col-sm-3">Descripción:</dt>
             <dd class="col-sm-9"><%= @task.description %></dd>
 
             <dt class="col-sm-3">Creador:</dt>
-            <dd class="col-sm-9"><%= @task.assigned_user_id || "Sin usuario asignado"%></dd>
+            <dd class="col-sm-9"><%= @task.assigned_user&.name || "Sin usuario asignado"%></dd>
+            <% if @task.no_iniciada? %>
+              <dt class="col-sm-3">Estado:</dt>
+              <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
+            <% else %>
+              <dt class="col-sm-3">Estado:</dt>
+              <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
 
-            <dt class="col-sm-3">Estado:</dt>
-            <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
-
-            <dt class="col-sm-3">Fecha de inicio:</dt>
-            <dd class="col-sm-9"><%= "No iniciado" %></dd>
+              <dt class="col-sm-3">Fecha de inicio:</dt>
+              <dd class="col-sm-9"><%= @task.start_date %></dd>
+            <% end %>
 
             <dt class="col-sm-3">Creado:</dt>
             <dd class="col-sm-9"><%= @task.created_at.strftime("%d/%m/%Y %H:%M") %></dd>

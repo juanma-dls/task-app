@@ -50,12 +50,18 @@
           </div>
         </div>
       <% end %>
-      <%= image_tag(image_path("logo.png"), class:"ms-2") %>
+      <%= link_to :back, class:"nav-link mt-1 ms-3 d-flex align-items-center" do %>
+        <span class="material-symbols-outlined">
+          arrow_back
+        </span>
+      <% end %>
+      <!-- Considerar si es mejor colocar una img de icono -->
+      <% image_tag(image_path("logo.png"), class:"ms-2") %>
     </div>
     <% if user_signed_in? %>
       <div class="nav-item dropdown me-2">
         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <%= current_user.nombre %>
+          <%= current_user.name %>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
           <% if can?(:edit_profile, User) %>

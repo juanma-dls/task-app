@@ -1,4 +1,4 @@
-<h5>Tareas del usuario: <%= current_user.nombre %></h5>
+<h5>Tareas del usuario: <%= current_user.name %></h5>
 <% if @tasks.present? %>
   <div class="container-fluid py-4">
     <h5 class="mb-4">Tareas del proyecto: </h5>
@@ -18,7 +18,7 @@
               <tbody>
                 <% @tasks.each do |task| %>
                   <tr>
-                    <td><%= task.name %></td>
+                    <td><%= task.title %></td>
                     <td><%= Task.statuses[task.status] %></td>
                     <td><%= task.created_at.strftime("%d/%m/%Y") %></td>  
                     <td>

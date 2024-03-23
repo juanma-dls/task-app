@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: {minimum:6, maximum:15}
   validates :password_confirmation, presence: true, length: {minimum:6, maximum:15}
   validates :username, presence: true, uniqueness: true
-  validates :nombre, presence:true 
+  validates :name, presence:true 
 
   def administrador?
     self.rol.name == "Administrador"

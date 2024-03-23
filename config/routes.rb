@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   resources :projects
   resources :tasks
 
+  as :tasks do
+    post 'iniciar_task', to: 'tasks#iniciar_task'
+  end
 end
