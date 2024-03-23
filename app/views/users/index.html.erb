@@ -22,7 +22,7 @@
               <% @users.each do |user| %>
                 <tr>
                   <td><%= link_to user.username, user_path(user), class: "btn btn-link" %></td>
-                  <td><%= user.nombre %></td>
+                  <td><%= user.name %></td>
                   <td><%= user.email %></td>
                   <td><%= user.rol.name %></td>  
                   <td>

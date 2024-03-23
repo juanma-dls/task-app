@@ -33,10 +33,26 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def iniciar_task
+    task = Task.find_by(id: params[:format])
+    if task && task.status == "creado" && !task.start_date.present?
+      task.start_date = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+      task.status = "iniciado"
+      if task.save
+        redirect_to task_path(task), notice: 'La tarea ha sido iniciada correctamente.'
+      else
+        redirect_to task_path(task), alert: 'No se pudo iniciar la tarea.'
+      end
+    else
+      redirect_to root_path, alert: 'No se pudo encontrar la tarea o la tarea ya ha sido iniciada.'
+    end
+  end
+  
+
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :status, :priority, :project_id, :assigned_user_id)
+    params.require(:task).permit(:title, :description, :status, :priority, :project_id, :assigned_user_id)
   end  
   
 end

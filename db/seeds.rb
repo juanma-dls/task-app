@@ -17,5 +17,5 @@ roles = Rol.create!([
 ])
 
 User.create!([
-  { nombre: "Administrador", email: "juanmadls6@gmail.com", username: "administrador", password: "jmdls1997", password_confirmation: "jmdls1997", rol_id: roles.first.id }
+  { name: "Administrador", email: "juanmadls6@gmail.com", username: "administrador", password: "jmdls1997", password_confirmation: "jmdls1997", rol_id: roles.first.id }
 ])

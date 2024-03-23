@@ -6,9 +6,9 @@
     <%= form_for(@task) do |f| %>
       <div class="card-body">
         <div class="mb-3 row">
-          <label for="task_name" class="col-sm-3 col-form-label">Nombre</label>
+          <label for="task_title" class="col-sm-3 col-form-label">Título</label>
           <div class="col-sm-9">
-            <%= f.text_field :name, class: "form-control", required: true %>
+            <%= f.text_field :title, class: "form-control", required: true %>
           </div>
         </div>
 
@@ -36,7 +36,7 @@
         <div class="mb-3 row">
           <label for="task_end_date" class="col-sm-3 col-form-label">Usuarios</label>
           <div class="col-sm-9">
-            <%= f.select :assigned_user_id, @users.map {|user| [user.nombre, user.id]}, {include_blank:'Asignar a usuario'}, class: "form-select mb-2" %>
+            <%= f.select :assigned_user_id, @users.map {|user| [user.name, user.id]}, {include_blank:'Asignar a usuario'}, class: "form-select mb-2" %>
           </div>
         </div>
       </div>
