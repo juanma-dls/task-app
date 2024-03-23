@@ -11,6 +11,8 @@
           <table class="table table-hover table-responsive-md">
             <thead class="table-light">
               <tr>
+                <th>Username</th>
+                <th>Nombre</th>
                 <th>Email</th>
                 <th>Rol</th>
                 <th>Acciones</th>
@@ -19,10 +21,11 @@
             <tbody>
               <% @users.each do |user| %>
                 <tr>
+                  <td><%= link_to user.username, user_path(user), class: "btn btn-link" %></td>
+                  <td><%= user.nombre %></td>
                   <td><%= user.email %></td>
                   <td><%= user.rol.name %></td>  
                   <td>
-                    <%= link_to 'Ver', user_path(user), class: "btn btn-sm btn-outline-secondary" %>
                     <%= link_to 'Baja', user_path(user), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-sm btn-outline-danger" %>
                   </td>
                 </tr>

@@ -2,10 +2,7 @@ class Task < ApplicationRecord
   self.table_name = "tasks"
 
   belongs_to :project
-  has_many :user_subroles
-  has_many :assigned_users, through: :user_subroles, source: :user
-
-  accepts_nested_attributes_for :user_subroles
+  belongs_to :assigned_user, class_name: "User", foreign_key: "assigned_user_id", optional: true
 
   validates :name, presence: true
   validates :description, presence: true, length: { maximum: 1000 }

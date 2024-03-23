@@ -36,7 +36,7 @@
         <div class="mb-3 row">
           <label for="task_end_date" class="col-sm-3 col-form-label">Usuarios</label>
           <div class="col-sm-9">
-            <%= render "user_subroles_fields", form: f %>
+            <%= f.select :assigned_user_id, @users.map {|user| [user.nombre, user.id]}, {include_blank:'Asignar a usuario'}, class: "form-select mb-2" %>
           </div>
         </div>
       </div>

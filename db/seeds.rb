@@ -11,17 +11,9 @@
 roles = Rol.create!([
   {name: "Administrador"},
   {name: "Gestor de Proyecto"},
+  {name: "Desarrollador"},
   {name: "Colaborador"},
   {name: "Observador"}
-])
-
-Subrol.create!([
-  { name: "Desarrollo Front-end", description: "Responsable del desarrollo de la interfaz de usuario." },
-  { name: "Desarrollo Back-end", description: "Responsable del desarrollo del servidor y la lógica de la aplicación." },
-  { name: "Diseño UX/UI", description: "Responsable del diseño visual y la experiencia de usuario de la aplicación." },
-  { name: "Unit Test", description: "Generación de Test para los métodos" },
-  { name: "Gestor de proyecto", description: "Responsable de la planificación, organización y seguimiento del proyecto." },
-  { name: "Observador", description: "Podra realizar seguimiento de la tarea sin intervenir" },
 ])
 
 User.create!([
