@@ -4,7 +4,11 @@
       <h2 class="mb-0">Tarea</h2>
       <div class="d-flex justify-content-end">
         <%= button_to "Editar", edit_task_path(@task), class:"btn btn-sm btn-primary me-2" %>
-        <%= @task.no_iniciada? ? button_to("Iniciar", iniciar_task_path(@task), class: "btn btn-sm btn-success") : "" %>
+        <% if @task.no_iniciada? %>
+          <%= button_to("Iniciar", iniciar_finalizar_task_path(@task), class: "btn btn-sm btn-success") %>
+        <% elsif @task.en_curso? %>
+          <%= button_to("Finalizar", iniciar_finalizar_task_path(@task), class: "btn btn-sm btn-danger") %>
+        <% end %>
       </div>
     </div>
 
@@ -23,12 +27,18 @@
             <% if @task.no_iniciada? %>
               <dt class="col-sm-3">Estado:</dt>
               <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
-            <% else %>
+            <% elsif @task.en_curso? %>
               <dt class="col-sm-3">Estado:</dt>
               <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
 
               <dt class="col-sm-3">Fecha de inicio:</dt>
-              <dd class="col-sm-9"><%= @task.start_date %></dd>
+              <dd class="col-sm-9"><%= @task.start_date.strftime("%d/%m/%Y %H:%M") %></dd>
+            <% else %>
+              <dt class="col-sm-3">Estado:</dt>
+              <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
+
+              <dt class="col-sm-3">Rango de tiempo:</dt>
+              <dd class="col-sm-9"><%= "#{@task.start_date.strftime("%d/%m/%Y %H:%M")} - #{@task.end_date.strftime("%d/%m/%Y %H:%M")}"%></dd>
             <% end %>
 
             <dt class="col-sm-3">Creado:</dt>

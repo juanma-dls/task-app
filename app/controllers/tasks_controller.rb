@@ -33,21 +33,42 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
-  def iniciar_task
+  def iniciar_finalizar_task
     task = Task.find_by(id: params[:format])
-    if task && task.status == "creado" && !task.start_date.present?
-      task.start_date = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-      task.status = "iniciado"
-      if task.save
-        redirect_to task_path(task), notice: 'La tarea ha sido iniciada correctamente.'
-      else
-        redirect_to task_path(task), alert: 'No se pudo iniciar la tarea.'
-      end
+    if task.nil?
+      redirect_to root_path, alert: 'No se pudo encontrar la tarea.'
+      return
+    end
+    if task.status == "creado" && !task.start_date.present?
+      iniciar_tarea(task)
+    elsif task.status != "creado" && task.start_date.present?
+      finalizar_tarea(task)
     else
-      redirect_to root_path, alert: 'No se pudo encontrar la tarea o la tarea ya ha sido iniciada.'
+      redirect_to root_path, alert: 'No se pudo iniciar o finalizar la tarea.'
     end
   end
   
+  private
+  
+  def iniciar_tarea(task)
+    task.start_date = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+    task.status = "iniciado"
+    if task.save
+      redirect_to task_path(task), notice: 'Tarea iniciada.'
+    else
+      redirect_to task_path(task), alert: 'No se pudo iniciar la tarea.'
+    end
+  end
+  
+  def finalizar_tarea(task)
+    task.end_date = Time.now.strftime("%Y-%m-%d %H:%M:%S")
+    task.status = "finalizado"
+    if task.save
+      redirect_to task_path(task), notice: 'Tarea finalizada.'
+    else
+      redirect_to task_path(task), alert: 'No se pudo finalizar la tarea.'
+    end
+  end
 
   private
 

@@ -30,6 +30,10 @@ class Task < ApplicationRecord
     self.status == "creado"
   end
 
+  def en_curso?
+    self.status != "creado" && self.status != "finalizado"
+  end
+
   private
 
   def generate_task_title
