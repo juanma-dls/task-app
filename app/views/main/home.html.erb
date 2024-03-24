@@ -1,40 +1,9 @@
-<h5>Tareas del usuario: <%= current_user.name %></h5>
-<% if @tasks.present? %>
-  <div class="container-fluid py-4">
-    <h5 class="mb-4">Tareas del proyecto: </h5>
-    <div class="row">
-      <div class="col-lg-8">
-        <div class="card border-0 shadow-sm rounded-lg">
-          <div class="card-body">
-            <table class="table table-hover table-responsive-md">
-              <thead class="table-light">
-                <tr>
-                  <th>Nombre</th>
-                  <th>Estado</th>
-                  <th>Fecha de creacion</th>
-                  <th ></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @tasks.each do |task| %>
-                  <tr>
-                    <td><%= task.title %></td>
-                    <td><%= Task.statuses[task.status] %></td>
-                    <td><%= task.created_at.strftime("%d/%m/%Y") %></td>  
-                    <td>
-                      <%= link_to 'Ver', task_path(task), class: "btn btn-sm btn-outline-secondary" %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<h5>Proyectos:</h5>
+<% if @projects.present? %>
+  <%= render partial: 'components/project_card_component', locals: { project: @project } %>
+  <%= render partial: 'tasks_list' %>
 <% else %>
   <div class="container-fluid py-4">
-    <h5 class="mb-4">No tiene tareas asignadas </h5>
-  </div>
+      <h5 class="mb-4">Aún no pertenece a un proyecto </h5>
+    </div>
 <% end %>

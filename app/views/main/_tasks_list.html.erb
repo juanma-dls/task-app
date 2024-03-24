@@ -1,0 +1,41 @@
+<% if @tasks.present? %>
+  <div class="container-fluid py-4">
+    <h5 class="mb-4">Tareas asignadas:</h5>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Tarea</th>
+            <th scope="col">Proyecto</th>
+            <th scope="col">Prioridad</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Fecha de creación</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @tasks.each do |task| %>
+            <tr>
+              <td><%= link_to task.title, task_path(task), class: "text-decoration-none" %></td>
+              <td><%= task.project.name %></td>
+              <td><%= Task.priorities[task.priority] %></td>
+              <td><%= Task.statuses[task.status] %></td>
+              <td><%= task.created_at.strftime("%d/%m/%Y") %></td>  
+              <td>
+                <% if task.no_iniciada? %>
+                  <%= button_to("Iniciar", iniciar_finalizar_task_path(task), class: "btn btn-sm btn-success") %>
+                <% elsif task.en_curso? %>
+                  <%= button_to("Finalizar", iniciar_finalizar_task_path(task), class: "btn btn-sm btn-danger") %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <div class="container-fluid py-4">
+    <h5 class="mb-4">No tiene tareas asignadas</h5>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<div class="row">
+  <% @projects.each do |project| %>
+    <div class="card border-0 shadow-lg col-3 mb-3 me-3">
+      <%= link_to project_path(project), class: "card-project text-decoration-none" do %>
+        <div class="card-body p-4">
+          <h5 class="card-title text-primary font-weight-bold"><%= project.name %></h5>
+          <p class="card-text text-muted"><%= project.description %></p>
+          <div class="d-flex justify-content-center align-items-center mt-3">
+            <small class="text-muted">Creado hace <%= time_ago_in_words(project.created_at) %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -16,3 +16,12 @@ $(document).on('click', '.btn-remove-subrole', function(e) {
     $(this).closest('.user-subrole').remove();
   }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const clickableRows = document.querySelectorAll('.clickable-row');
+  clickableRows.forEach(row => {
+    row.addEventListener('click', function() {
+      window.location.href = this.dataset.href;
+    });
+  });
+});
