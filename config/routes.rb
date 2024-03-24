@@ -16,6 +16,6 @@ Rails.application.routes.draw do
   resources :tasks
 
   as :tasks do
-    post 'iniciar_task', to: 'tasks#iniciar_task'
+    post 'iniciar_finalizar_task', to: 'tasks#iniciar_finalizar_task'
   end
 end

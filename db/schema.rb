@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_23_033100) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_24_013759) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_033100) do
   create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
-    t.date "end_date"
+    t.datetime "end_date"
     t.string "status", null: false
     t.string "priority"
     t.decimal "estimated_time", precision: 10
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_23_033100) do
     t.datetime "updated_at", null: false
     t.bigint "assigned_user_id"
     t.bigint "project_id"
-    t.date "start_date"
+    t.datetime "start_date"
     t.integer "nro"
     t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
