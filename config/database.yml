@@ -14,13 +14,14 @@ default: &default
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   host: <%= ENV.fetch("DB_HOST") %>
+  port: <%= ENV.fetch("DB_PORT") %>
   username: <%= ENV.fetch("DB_USERNAME") %>
   password: <%= ENV.fetch("DB_PASSWORD") %>
   socket: /var/run/mysqld/mysqld.sock
 
 development:
   <<: *default
-  database: task_app_development
+  database: <%= ENV.fetch("DB_NAME") %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
