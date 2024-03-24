@@ -11,7 +11,11 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @tasks = @project.tasks
+    if current_user.administrador? || current_user.gestor_proyecto?
+      @tasks = @project.tasks
+    else
+      @tasks = @project.tasks.for_user(current_user).not_finished
+    end
   end
 
   def create

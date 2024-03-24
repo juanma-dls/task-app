@@ -8,6 +8,7 @@ class Project < ApplicationRecord
   validates :description, presence: true, length: {maximum: 1000}
 
   enum status: {
+    creado: 'Creado',
     iniciado: 'Iniciado',
     en_desarrollo: 'En desarrollo',
     finalizado: 'Finalizado',

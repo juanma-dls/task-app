@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_24_013759) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_24_170026) do
   create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "content", null: false
     t.datetime "created_at", null: false
@@ -49,10 +49,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_24_013759) do
     t.decimal "actual_time", precision: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "assigned_user_id"
     t.bigint "project_id"
     t.datetime "start_date"
     t.integer "nro"
+    t.bigint "assigned_user_id"
     t.index ["assigned_user_id"], name: "index_tasks_on_assigned_user_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
@@ -77,6 +77,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_24_013759) do
   add_foreign_key "comments", "users"
   add_foreign_key "projects", "users", column: "creator_user_id"
   add_foreign_key "tasks", "projects"
-  add_foreign_key "tasks", "projects", column: "assigned_user_id"
+  add_foreign_key "tasks", "users", column: "assigned_user_id"
   add_foreign_key "users", "roles", column: "rol_id", on_update: :cascade, on_delete: :cascade
 end

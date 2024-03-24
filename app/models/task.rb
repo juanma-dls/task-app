@@ -8,6 +8,9 @@ class Task < ApplicationRecord
 
   validates :title, presence: true
   validates :description, presence: true, length: { maximum: 1000 }
+
+  scope :not_finished, -> { where.not(status: "finalizado") }
+  scope :for_user, ->(user) { where(assigned_user: user) }
   
   enum status: {
     creado: "Creado",

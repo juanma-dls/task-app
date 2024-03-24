@@ -3,7 +3,13 @@ class TasksController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @task = Task.all
+    if current_user.administrador?
+      @tasks = Task.all
+    elsif current_user.gestor_proyecto?
+      @tasks = Task.where(assigned_user: current_user)
+    else
+      @tasks = Task.where(assigned_user: current_user).where.not(status: "finalizado")
+    end    
   end
 
   def new
@@ -19,7 +25,7 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'La tarea fue creada exitosamente' }
-        format.json { render :show, status: :created, location: @task }
+        format.json { render project_path(@task.project_id), status: :created, location: @task }
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }

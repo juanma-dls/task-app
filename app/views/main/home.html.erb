@@ -1,7 +1,7 @@
 <h5>Proyectos:</h5>
 <% if @projects.present? %>
   <%= render partial: 'components/project_card_component', locals: { project: @project } %>
-  <%= render partial: 'tasks_list' %>
+  <%= render partial: 'tasks/tasks_asignadas' %>
 <% else %>
   <div class="container-fluid py-4">
       <h5 class="mb-4">Aún no pertenece a un proyecto </h5>
