@@ -20,7 +20,7 @@
             <dd class="col-sm-9"><%= @task.title %></dd>
 
             <dt class="col-sm-3">Descripción:</dt>
-            <dd class="col-sm-9"><%= @task.description %></dd>
+            <dd class="col-sm-9"><%= simple_format(@task.description) %></dd>
 
             <dt class="col-sm-3">Creador:</dt>
             <dd class="col-sm-9"><%= @task.assigned_user&.name || "Sin usuario asignado"%></dd>
@@ -50,5 +50,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="mt-5">
+    <%= render partial: 'comments/form', locals: { task: @task, comment: @comment } %>
+    <% @comments.each do |comment| %>
+      <%= render partial: 'comments/comment', locals: { comment: comment } %>
+    <% end %>
   </div>
 </div>

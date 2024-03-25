@@ -37,6 +37,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @comment = Comment.new
+    @comments = @task.comments.order(created_at: :desc)
   end
 
   def iniciar_finalizar_task

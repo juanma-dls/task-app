@@ -64,6 +64,8 @@ Rails.application.configure do
 
   config.log_level = :debug
 
+  config.assets.compile = true
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 

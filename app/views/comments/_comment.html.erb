@@ -1,0 +1,9 @@
+<div class="media mb-3">
+  <div class="media-body">
+    <h5 class="mt-0 mb-0"><%= link_to comment.user.name, user_path(comment.user_id), class: "text-decoration-none text-black" %>:</h5>
+    <p class="small text-muted"><%= comment.user.email %></p>
+    <%= simple_format(comment.content) %>
+    <p class="small text-muted"><%= comment.created_at.strftime("%B %d, %Y %l:%M %p") %></p>
+  </div>
+</div>
+<hr>
