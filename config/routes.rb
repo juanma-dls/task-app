@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-
   get 'main/home'
-  # Defines the root path route ("/")
   root to: "application#redirect_based_on_authentication"
 
   devise_for :users, skip: [:registrations]
@@ -13,7 +11,10 @@ Rails.application.routes.draw do
 
   resources :roles
   resources :projects
-  resources :tasks
+
+  resources :tasks, only: [:index, :new, :create, :show, :edit, :update] do
+    resources :comments, only: [:new, :create, :update]
+  end
 
   as :tasks do
     post 'iniciar_finalizar_task', to: 'tasks#iniciar_finalizar_task'

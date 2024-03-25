@@ -1,0 +1,9 @@
+<%= form_with(model: @comment, url: task_comments_path(@task)) do |form| %>
+  <div class="mb-3">
+    <%= form.label "Nuevo comentario", class: "form-label" %>
+    <%= form.text_area :content, rows: 5, class: "form-control", placeholder: "Escribe tu comentario aquí..." %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= form.submit "Guardar", class: "btn btn-primary" %>
+  </div>
+<% end %>
