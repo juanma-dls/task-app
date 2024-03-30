@@ -23,10 +23,15 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    if @project.update(project_params)
-      redirect_to @project, notice: "Usuario actualizado correctamente."
-    else
-      render :edit
+    respond_to do |format|
+      byebug
+      if @project.update(project_params)
+        format.html { redirect_to @project, notice: "Proyecto #{@project.name} fue actualizada exitosamente" }
+        format.json { render render :show, status: :created, location: @project }
+      else
+        format.html { render :new }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
+      end
     end
   end
   

@@ -42,12 +42,14 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params)
-      format.html { redirect_to @task, notice: "Tarea #{@task.title} fue actualizada exitosamente" }
-      format.json { render render :show, status: :created, location: @task }
-    else
-      format.html { render :new }
-      format.json { render json: @task.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @task.update(task_params)
+        format.html { redirect_to @task, notice: "Tarea #{@task.title} fue actualizada exitosamente" }
+        format.json { render render :show, status: :created, location: @task }
+      else
+        format.html { render :new }
+        format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
     end
   end
 
