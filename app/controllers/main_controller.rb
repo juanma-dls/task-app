@@ -3,6 +3,6 @@ class MainController < ApplicationController
   
   def home
     @projects = Project.joins(:tasks).where(tasks: { assigned_user_id: current_user.id }).distinct
-    @tasks = Task.for_user(current_user).not_finished
+    @tasks = Task.for_user(current_user).not_finished.page(params[:page]).per(10)
   end
 end

@@ -93,3 +93,36 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555; /* Cambia el color de la barra deslizadora al pasar el mouse sobre ella */
 }
+
+.pagination {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination span {
+  margin: 0 5px;
+}
+
+.pagination a {
+  text-decoration: none;
+  color: #333;
+  padding: 5px 9px; /* Ajustar el tamaño del círculo */
+  border-radius: 50%;
+  text-align: center;
+}
+
+.pagination .page.current {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 9px; /* Ajustar el tamaño del círculo */
+}
+
+.pagination a:hover {
+  text-decoration: underline; /* Subrayar al pasar el mouse sobre los botones */
+  background-color: transparent; /* Quitar el fondo de color */
+  border-color: transparent; /* Quitar el borde */
+}
