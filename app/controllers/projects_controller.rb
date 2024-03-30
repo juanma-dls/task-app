@@ -12,17 +12,30 @@ class ProjectsController < ApplicationController
 
   def show
     if current_user.administrador? || current_user.gestor_proyecto?
-      @tasks = @project.tasks
+      @tasks = @project.tasks.page(params[:page]).per(10)
     else
-      @tasks = @project.tasks.for_user(current_user).not_finished
+      @tasks = @project.tasks.for_user(current_user).not_finished.page(params[:page]).per(10)
+    end
+  end  
+
+  def edit
+    @project = Project.find(params[:id])
+  end
+
+  def update
+    if @project.update(project_params)
+      redirect_to @project, notice: "Usuario actualizado correctamente."
+    else
+      render :edit
     end
   end
+  
 
   def create
     @project = Project.new(project_params)
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'El Proyecto fue Creado Exitosamente' }
+        format.html { redirect_to @project, notice: 'El proyecto fue creado exitosamente' }
         format.json { render :show, status: :created, location: @project }
       else
         format.html { render :new }

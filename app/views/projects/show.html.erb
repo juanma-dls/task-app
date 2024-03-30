@@ -2,7 +2,7 @@
   <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h2 class="mb-0">Informacion de Proyecto</h2>
-      <%= button_to("Editar", edit_project_path(@project), class: "btn btn-sm btn-primary") if current_user.administrador? || current_user.gestor_proyecto? %>
+      <%= link_to "Editar", edit_project_path(@project), class: "btn btn-sm btn-primary" if current_user.administrador? || current_user.gestor_proyecto? %>
     </div>
 
     <div class="card-body">
@@ -13,7 +13,7 @@
             <dd class="col-sm-9"><%= @project.name %></dd>
 
             <dt class="col-sm-3">Descripción:</dt>
-            <dd class="col-sm-9"><%= @project.description %></dd>
+            <dd class="col-sm-9"><%= simple_format(@project.description) %></dd>
 
             <dt class="col-sm-3">Creador:</dt>
             <dd class="col-sm-9"><%= @project.creator_user.name %></dd>

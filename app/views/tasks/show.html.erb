@@ -3,7 +3,7 @@
     <div class="card-header d-flex justify-content-between align-items-center">
       <h2 class="mb-0">Tarea</h2>
       <div class="d-flex justify-content-end">
-        <%= button_to "Editar", edit_task_path(@task), class:"btn btn-sm btn-primary me-2" %>
+        <%= link_to "Editar", edit_task_path(@task), class:"btn btn-sm btn-primary me-2" %>
         <% if @task.no_iniciada? %>
           <%= button_to("Iniciar", iniciar_finalizar_task_path(@task), class: "btn btn-sm btn-success") %>
         <% elsif @task.en_curso? %>
@@ -24,6 +24,10 @@
 
             <dt class="col-sm-3">Creador:</dt>
             <dd class="col-sm-9"><%= @task.assigned_user&.name || "Sin usuario asignado"%></dd>
+
+            <dt class="col-sm-3">Prioridad:</dt>
+            <dd class="col-sm-9"><%= Task.priorities[@task.priority] %></dd>
+
             <% if @task.no_iniciada? %>
               <dt class="col-sm-3">Estado:</dt>
               <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>

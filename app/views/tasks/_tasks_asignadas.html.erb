@@ -27,6 +27,8 @@
                     <%= button_to("Iniciar", iniciar_finalizar_task_path(task), class: "btn btn-sm btn-success") %>
                   <% elsif task.en_curso? %>
                     <%= button_to("Finalizar", iniciar_finalizar_task_path(task), class: "btn btn-sm btn-danger") %>
+                  <% else %>
+                    Sin acciones
                   <% end %>
                 </td>
               <% end %>
@@ -35,6 +37,7 @@
         </tbody>
       </table>
     </div>
+    <%= paginate @tasks %>
   </div>
 <% else %>
   <div class="container-fluid py-4">

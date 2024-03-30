@@ -17,6 +17,12 @@ class TasksController < ApplicationController
     @users = User.all
     session[:project_id] = params[:project_id]
   end
+
+  def edit
+    @task = Task.find(params[:id])
+    @users = User.all
+    @task.project_id = session[:project_id]
+  end
   
   def create
     @users = User.all
@@ -24,8 +30,8 @@ class TasksController < ApplicationController
     @task.project_id = session[:project_id]
     respond_to do |format|
       if @task.save
-        format.html { redirect_to @task, notice: 'La tarea fue creada exitosamente' }
-        format.json { render project_path(@task.project_id), status: :created, location: @task }
+        format.html { redirect_to project_path(@task.project_id), notice: "Tarea #{@task.title} fue creada exitosamente" }
+        format.json { render render :show, status: :created, location: @task }
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -33,6 +39,16 @@ class TasksController < ApplicationController
     end
     # Eliminar de la sesion el project_id al crear la tarea
     session.delete(:project_id)
+  end
+
+  def update
+    if @task.update(task_params)
+      format.html { redirect_to @task, notice: "Tarea #{@task.title} fue actualizada exitosamente" }
+      format.json { render render :show, status: :created, location: @task }
+    else
+      format.html { render :new }
+      format.json { render json: @task.errors, status: :unprocessable_entity }
+    end
   end
 
   def show
