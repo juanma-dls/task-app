@@ -56,7 +56,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @comment = Comment.new
-    @comments = @task.comments.order(created_at: :desc)
+    @comments = @task.comments.order(created_at: :desc).page(params[:page]).per(4)
   end
 
   def iniciar_finalizar_task
