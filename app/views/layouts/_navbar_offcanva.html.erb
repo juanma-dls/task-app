@@ -53,11 +53,7 @@
           </div>
         </div>
       <% end %>
-      <%= link_to :back, class:"nav-link mt-1 ms-3 d-flex align-items-center" do %>
-        <span class="material-symbols-outlined">
-          arrow_back
-        </span>
-      <% end %>
+      <%= render 'layouts/back_arrow' %>
       <!-- Considerar si es mejor colocar una img de icono -->
       <% image_tag(image_path("logo.png"), class:"ms-2") %>
     </div>
