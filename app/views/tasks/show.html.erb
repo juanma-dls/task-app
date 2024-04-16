@@ -20,7 +20,7 @@
             <dd class="col-sm-9"><%= @task.title %></dd>
 
             <dt class="col-sm-3">Descripción:</dt>
-            <dd class="col-sm-9"><%= simple_format(@task.description) %></dd>
+            <dd class="col-sm-9"><%= auto_link_text(simple_format(@task.description)) %></dd>
 
             <dt class="col-sm-3">Creador:</dt>
             <dd class="col-sm-9"><%= @task.assigned_user&.name || "Sin usuario asignado"%></dd>
@@ -57,7 +57,7 @@
   </div>
   <div class="mt-5">
     <%= render partial: 'comments/form', locals: { task: @task, comment: @comment } %>
-    <h3 class="mb-0">Últimos comentarios</h3>
+    <%= @comments.present? ? content_tag(:h3, "Últimos comentarios", class: "mb-0") : content_tag(:h3, "Aún no hay comentarios", class: "mb-0") %>
     <br>
     <% @comments.each do |comment| %>
       <%= render partial: 'comments/comment', locals: { comment: comment } %>

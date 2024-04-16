@@ -13,7 +13,7 @@
             <dd class="col-sm-9"><%= @project.name %></dd>
 
             <dt class="col-sm-3">Descripción:</dt>
-            <dd class="col-sm-9"><%= simple_format(@project.description) %></dd>
+            <dd class="col-sm-9"><%= auto_link_text(simple_format(@project.description)) %></dd>
 
             <dt class="col-sm-3">Creador:</dt>
             <dd class="col-sm-9"><%= @project.creator_user.name %></dd>

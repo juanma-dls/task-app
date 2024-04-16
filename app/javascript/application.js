@@ -5,3 +5,5 @@ import "@fortawesome/fontawesome-free";
 import "./custom/main"
 import "jquery"
 import "jquery_ujs"
+import "popper"
+import "bootstrap"

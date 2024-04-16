@@ -36,13 +36,22 @@ gem 'devise'
 
 gem 'serviceworker-rails'
 
+# User permissions
 gem 'cancancan'
 
 gem "jquery-rails"
 
+# Components
 gem 'view_component'
 
+#Paginator
 gem 'kaminari'
+
+# Bootstrap 5
+gem 'bootstrap'
+
+# Use Sass to process CSS
+gem 'sassc-rails'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
