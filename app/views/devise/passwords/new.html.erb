@@ -1,6 +1,11 @@
 <div class="d-flex align-items-center justify-content-center">
   <div class="card col-6 d-flex">
     <div class="card-body">
+      <% if @error.present? %>
+        <div class="alert alert-warning" role="alert">
+          <%= @error  %>
+        </div>
+      <% end %>
       <h2>¿Olvidaste tu contraseña?</h2>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>

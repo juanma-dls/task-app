@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: "Usuario actualizado correctamente."
     else
-      render :edit
+      render :edit, notice: @user.errors
     end
   end
 
