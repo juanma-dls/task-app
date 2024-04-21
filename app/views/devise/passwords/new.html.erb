@@ -1,30 +1,33 @@
-<div class="d-flex align-items-center justify-content-center">
-  <div class="card col-6 d-flex">
-    <div class="card-body">
-      <% if @error.present? %>
-        <div class="alert alert-warning" role="alert">
-          <%= @error  %>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <% if @error.present? %>
+            <div class="alert alert-warning" role="alert">
+              <%= @error  %>
+            </div>
+          <% end %>
+          <h2 class="text-center mb-4">¿Olvidaste tu contraseña?</h2>
+
+          <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="form-group mb-3">
+              <%= f.label :email %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+            </div>
+
+            <div class="d-grid gap-2">
+              <%= f.submit "Envíame instrucciones", class:"btn btn-secondary btn-block rounded-pill mb-3" %>
+            </div>
+          <% end %>
+
+          <div class="text-center">
+            <%= render "devise/shared/links" %>
+          </div>
         </div>
-      <% end %>
-      <h2>¿Olvidaste tu contraseña?</h2>
-
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
-
-        <div class="field mb-3">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-        </div>
-
-        <div class="actions d-flex align-items-center justify-content-center">
-          <%= f.submit "Envíame instrucciones", class:"btn btn-secondary rounded-pill mb-3" %>
-        </div>
-      <% end %>
-
-      <div class="d-flex align-items-center justify-content-center">
-        <%= render "devise/shared/links" %>
       </div>
-      
     </div>
   </div>
 </div>

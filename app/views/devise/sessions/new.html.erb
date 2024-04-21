@@ -1,35 +1,38 @@
-<div class="d-flex align-items-center justify-content-center">
-  <div class="card col-6 d-flex">
-    <div class="card-body">
-      <h2 class="text-center">Iniciar sesión</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Iniciar sesión</h2>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field mb-2">
-          <%= f.label :email %>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
-        </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mb-4" }) do |f| %>
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
 
-        <div class="field mb-3">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
-        </div>
+            <div class="form-group">
+              <%= f.label :password %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+            </div>
 
-        <% if devise_mapping.rememberable? %>
-          <div class="field mb-3 d-flex align-items-center justify-content-center">
-            <%= f.check_box :remember_me, class:"me-2" %>
-            <%= f.label :remember_me, "Recuerdame" %>
+            <% if devise_mapping.rememberable? %>
+              <div class="form-check my-4">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, class: "form-check-label ms-2" %>
+              </div>
+            <% end %>
+
+            <div class="d-grid gap-2">
+              <%= f.submit "Iniciar sesión", class: "btn btn-secondary btn-block rounded-pill mb-3" %>
+            </div>
+          <% end %>
+
+          <div class="text-center">
+            <%= render "devise/shared/links" %>
           </div>
-        <% end %>
-
-        <div class="actions d-flex align-items-center justify-content-center">
-          <%= f.submit "Iniciar sesión", class:"btn btn-secondary rounded-pill mb-3" %>
         </div>
-      <% end %>
-
-      <div class="d-flex align-items-center justify-content-center">
-        <%= render "devise/shared/links" %>
       </div>
-      
     </div>
   </div>
 </div>
