@@ -9,10 +9,11 @@ class User < ApplicationRecord
   has_many :tasks
 
   validates :email, presence: true, uniqueness: true
-  validates :password, presence: true, length: { minimum: 6, maximum: 15 }
-  validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 15 }
   validates :username, presence: true, uniqueness: true
   validates :name, presence: true
+
+  validates :password, presence: true, length: { minimum: 6, maximum: 15 }, if: :should_validate_password?
+  validates :password_confirmation, presence: true, length: { minimum: 6, maximum: 15 }, if: :should_validate_password?
 
   # Métodos para roles
   def administrador?
@@ -36,6 +37,15 @@ class User < ApplicationRecord
   end
 
   private
+
+  def should_validate_password?
+    password.present? || password_confirmation.present?
+  end
+
+  # Sobrescribir el método de Devise
+  def password_required?
+    !persisted? || password.present? || password_confirmation.present?
+  end
 
   def invalidate_sessions
     sessions = ActiveRecord::SessionStore::Session.where("data LIKE ?", "%warden.user.user.key%")

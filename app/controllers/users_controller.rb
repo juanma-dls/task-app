@@ -52,7 +52,9 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to @user, notice: "Usuario actualizado correctamente."
     else
-      render :edit, notice: @user.errors
+      puts @user.errors.full_messages # Verifica qué errores se están generando
+      flash.now[:alert] = "No se pudo actualizar el usuario."
+      render :edit
     end
   end
 
