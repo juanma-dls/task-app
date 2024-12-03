@@ -3,6 +3,23 @@
     <h5 class="mt-0 mb-0"><%= link_to comment.user.name, user_path(comment.user_id), class: "text-decoration-none text-black" %>:</h5>
     <p class="small text-muted"><%= comment.user.email %></p>
     <%= auto_link_text(simple_format(comment.content)) %>
+    
+    <% if comment.files.attached? %>
+      <div class="comment-files mt-2">
+        <% comment.files.each do |file| %>
+          <% if file.content_type.start_with?('image/') %>
+            <%= link_to rails_blob_path(file), target: "_blank" do %>
+              <%= image_tag(file, class: "img-thumbnail mr-2 mb-2", alt: "Imagen adjunta", style: "max-width: 150px; height: auto;") %>
+            <% end %>
+          <% else %>
+            <p class="small">
+              <%= link_to file.filename.to_s, rails_blob_path(file), target: "_blank", class: "text-decoration-none" %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+
     <p class="small text-muted"><%= comment.created_at.strftime("%B %d, %Y %l:%M %p") %></p>
   </div>
 </div>
