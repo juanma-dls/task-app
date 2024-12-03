@@ -24,7 +24,6 @@ class ProjectsController < ApplicationController
 
   def update
     respond_to do |format|
-      byebug
       if @project.update(project_params)
         format.html { redirect_to @project, notice: "Proyecto #{@project.name} fue actualizada exitosamente" }
         format.json { render render :show, status: :created, location: @project }
@@ -47,6 +46,13 @@ class ProjectsController < ApplicationController
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def low_logic
+    up_down(@project)
+
+    action = @project.discontinued_at == true ? "desactivado" : "activado"
+    redirect_to projects_path, notice: "Proyecto #{action} correctamente."
   end
 
   private

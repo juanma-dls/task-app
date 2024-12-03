@@ -1,13 +1,13 @@
-<div class="container mt-4">
+<div class="mt-4">
   <div class="card shadow-sm">
     <div class="card-header d-flex justify-content-between align-items-center">
       <h2 class="mb-0">Tarea</h2>
       <div class="d-flex justify-content-end">
         <%= link_to "Editar", edit_task_path(@task), class:"btn btn-sm btn-primary me-2" %>
         <% if @task.no_iniciada? %>
-          <%= button_to("Iniciar", iniciar_finalizar_task_path(@task), class: "btn btn-sm btn-success") %>
+          <%= button_to("Iniciar", iniciar_finalizar_task_task_path(@task), class: "btn btn-sm btn-success") %>
         <% elsif @task.en_curso? %>
-          <%= button_to("Finalizar", iniciar_finalizar_task_path(@task), class: "btn btn-sm btn-danger") %>
+          <%= button_to("Finalizar", iniciar_finalizar_task_task_path(@task), class: "btn btn-sm btn-danger") %>
         <% end %>
       </div>
     </div>
@@ -36,20 +36,20 @@
               <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
 
               <dt class="col-sm-3">Fecha de inicio:</dt>
-              <dd class="col-sm-9"><%= @task.start_date.strftime("%d/%m/%Y %H:%M") %></dd>
+              <dd class="col-sm-9"><%= @task.start_date.strftime("%d/%m/%Y") %></dd>
             <% else %>
               <dt class="col-sm-3">Estado:</dt>
               <dd class="col-sm-9"><%= Task.statuses[@task.status] %></dd>
 
               <dt class="col-sm-3">Rango de tiempo:</dt>
-              <dd class="col-sm-9"><%= "#{@task.start_date.strftime("%d/%m/%Y %H:%M")} - #{@task.end_date.strftime("%d/%m/%Y %H:%M")}"%></dd>
+              <dd class="col-sm-9"><%= "#{@task.start_date.strftime("%d/%m/%Y")} - #{@task.end_date.strftime("%d/%m/%Y")}"%></dd>
             <% end %>
 
             <dt class="col-sm-3">Creado:</dt>
-            <dd class="col-sm-9"><%= @task.created_at.strftime("%d/%m/%Y %H:%M") %></dd>
+            <dd class="col-sm-9"><%= @task.created_at.strftime("%d/%m/%Y") %></dd>
 
             <dt class="col-sm-3">Actualizado:</dt>
-            <dd class="col-sm-9"><%= @task.updated_at.strftime("%d/%m/%Y %H:%M") %></dd>
+            <dd class="col-sm-9"><%= @task.updated_at.strftime("%d/%m/%Y") %></dd>
           </dl>
         </div>
       </div>

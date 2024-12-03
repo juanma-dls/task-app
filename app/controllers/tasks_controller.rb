@@ -60,7 +60,7 @@ class TasksController < ApplicationController
   end
 
   def iniciar_finalizar_task
-    task = Task.find_by(id: params[:format])
+    task = Task.find_by(id: params[:id])
     if task.nil?
       redirect_to root_path, alert: 'No se pudo encontrar la tarea.'
       return

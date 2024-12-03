@@ -1,4 +1,4 @@
-<div class="container-fluid py-4">
+<div class="py-4">
   <h1 class="text-center mb-4 display-4">Usuarios</h1>
 
   <div class="row justify-content-center">
@@ -21,12 +21,12 @@
             <tbody>
               <% @users.each do |user| %>
                 <tr>
-                  <td><%= link_to user.username, user_path(user), class: "btn btn-link" %></td>
+                  <td><%= link_to_user(user, class: "btn btn-link") %></td>
                   <td><%= user.name %></td>
                   <td><%= user.email %></td>
                   <td><%= user.rol.name %></td>  
                   <td>
-                    <%= link_to 'Baja', user_path(user), method: :delete, data: { confirm: '¿Estás seguro?' }, class: "btn btn-sm btn-outline-danger" %>
+                    <%= toggle_user_activation(user) %>
                   </td>
                 </tr>
               <% end %>

@@ -16,6 +16,7 @@ en:
       timeout: "Tu sesión expiró. Inicie sesión nuevamente para continuar."
       unauthenticated: "Debes iniciar sesión o registrarte antes de continuar."
       unconfirmed: "Debes confirmar tu dirección de correo electrónico antes de continuar."
+      account_discontinued: "Tu cuenta ha sido desactivada. Por favor contacte al equipo de soporte."
     mailer:
       confirmation_instructions:
         subject: "Instrucciones de confirmación"

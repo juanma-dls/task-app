@@ -56,6 +56,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def low_logic
+    begin
+      @user = User.find(params[:id])
+
+      if @user.discontinued_at.nil?
+        # Desactivar el usuario
+        @user.update_columns(discontinued_at: Time.current)
+        # Si el usuario que se desactiva es el actual, se cierra su sesión
+        if @user == current_user
+          sign_out(@user)  # Cierra la sesión solo del usuario desactivado
+          flash[:notice] = 'Tu cuenta ha sido desactivada y has sido desconectado.'
+        else
+          flash[:notice] = 'Usuario desactivado correctamente.'
+        end
+      else
+        # Reactivar el usuario
+        @user.update_columns(discontinued_at: nil)
+        flash[:notice] = 'Usuario reactivado correctamente.'
+      end
+    rescue => e
+      flash[:alert] = "Ocurrió un error inesperado: #{e.message}"
+    ensure
+      redirect_to users_path
+    end
+  end
+
   private
 
   def user_params
