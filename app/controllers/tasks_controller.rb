@@ -2,16 +2,6 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
 
-  def index
-    if current_user.administrador?
-      @tasks = Task.all
-    elsif current_user.gestor_proyecto?
-      @tasks = Task.where(assigned_user: current_user)
-    else
-      @tasks = Task.where(assigned_user: current_user).where.not(status: "finalizado")
-    end    
-  end
-
   def new
     @task = Task.new(project_id: params[:project_id])
     @users = User.all
@@ -56,7 +46,7 @@ class TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @comment = Comment.new
-    @comments = @task.comments.order(created_at: :desc).page(params[:page]).per(4)
+    @comments = @task.comments.with_attached_files.order(created_at: :desc).page(params[:page]).per(4)
   end
 
   def iniciar_finalizar_task

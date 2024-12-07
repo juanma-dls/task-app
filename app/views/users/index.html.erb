@@ -1,39 +1,6 @@
 <div class="py-4">
   <h1 class="text-center mb-4 display-4">Usuarios</h1>
 
-  <div class="row justify-content-center">
-    <div class="col-lg-8">
-      <div class="card border-0 shadow-sm rounded-lg">
-        <div class="card-header bg-light">
-          <%= link_to "Nuevo Usuario", new_user_path, class: "btn btn-primary float-end" %>
-        </div>
-        <div class="card-body">
-          <table class="table table-hover table-responsive-md">
-            <thead class="table-light">
-              <tr>
-                <th>Username</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each do |user| %>
-                <tr>
-                  <td><%= link_to_user(user, class: "btn btn-link") %></td>
-                  <td><%= user.name %></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.rol.name %></td>  
-                  <td>
-                    <%= toggle_user_activation(user) %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
+    <%= render 'users' %>
+
 </div>
